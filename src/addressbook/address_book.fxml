@@ -10,6 +10,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.input.KeyCodeCombination?>
@@ -21,7 +22,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="%fileMenu.text">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#newContactActionPerformed" text="New Contact">
+                  <MenuItem mnemonicParsing="false" onAction="#newContactActionPerformed" text="%newContactMenuItem.text">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -33,7 +34,7 @@
                         <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#deleteContactActionPerformed" text="Delete Contact">
+                  <MenuItem mnemonicParsing="false" onAction="#deleteContactActionPerformed" text="%deleteContactMenuItem.text">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,49 +56,55 @@
       </MenuBar>
       <ToolBar layoutY="30.0" prefHeight="40.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <items>
-          <Button mnemonicParsing="false" onAction="#newContactActionPerformed">
+          <Button fx:id="newButton" mnemonicParsing="false" onAction="#newContactActionPerformed">
                <graphic>
-                  <ImageView id="newButton" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/New24.gif" />
                      </image>
                   </ImageView>
                </graphic>
+               <tooltip>
+                  <Tooltip text="%newContactTooltip.text" />
+               </tooltip>
             </Button>
-            <Button mnemonicParsing="false" onAction="#deleteContactActionPerformed">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteContactActionPerformed">
                <graphic>
-                  <ImageView id="deleteButton" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@resources/Delete24.gif" />
                      </image>
                   </ImageView>
                </graphic>
+               <tooltip>
+                  <Tooltip text="%deleteContactToolip.text" />
+               </tooltip>
             </Button>
         </items>
       </ToolBar>
-      <SplitPane dividerPositions="0.29797979797979796" layoutY="72.0" prefHeight="329.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutY="72.0" prefHeight="329.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.66666666666669">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="327.0" prefWidth="213.0">
                <children>
-                  <ListView id="AddressBookController" layoutY="-1.0" prefHeight="329.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="contactsListView" layoutY="-1.0" prefHeight="329.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="100.0" prefHeight="327.0" prefWidth="426.0">
                <children>
-                  <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="58.0" prefWidth="75.0" text="Last Name:" AnchorPane.leftAnchor="14.0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="22.0" prefWidth="75.0" text="First Name:" AnchorPane.leftAnchor="14.0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="95.0" prefWidth="75.0" text="Phone:" AnchorPane.leftAnchor="14.0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="12.0" layoutY="133.0" prefWidth="75.0" text="Email:" AnchorPane.leftAnchor="14.0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="12.0" layoutY="170.0" prefWidth="75.0" text="Address:" AnchorPane.leftAnchor="14.0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="13.0" layoutY="213.0" prefWidth="75.0" text="Post Code:" AnchorPane.leftAnchor="14.0" />
-                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="256.0" prefWidth="75.0" text="City:" AnchorPane.leftAnchor="14.0" />
-                  <TextField id="firstNameField" layoutX="98.0" layoutY="18.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
-                  <TextField id="lastNameField" layoutX="98.0" layoutY="54.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
-                  <TextField id="phoneField" layoutX="98.0" layoutY="91.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
-                  <TextField id="emailField" layoutX="98.0" layoutY="129.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
-                  <TextField id="addressField" layoutX="98.0" layoutY="165.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
-                  <TextField id="cityField" layoutX="100.0" layoutY="252.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
-                  <TextField id="postCodeField" layoutX="99.0" layoutY="208.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="22.0" prefWidth="75.0" text="%firstNameLabel.text" AnchorPane.leftAnchor="14.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="58.0" prefWidth="75.0" text="%lastNameLabel.text" AnchorPane.leftAnchor="14.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="95.0" prefWidth="75.0" text="%phoneLabel.text" AnchorPane.leftAnchor="14.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="12.0" layoutY="133.0" prefWidth="75.0" text="%emailLabel.text" AnchorPane.leftAnchor="14.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="12.0" layoutY="170.0" prefWidth="75.0" text="%addressLabel.text" AnchorPane.leftAnchor="14.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="13.0" layoutY="213.0" prefWidth="75.0" text="%postcodeLabel.text" AnchorPane.leftAnchor="14.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="256.0" prefWidth="75.0" text="%cityLabel.text" AnchorPane.leftAnchor="14.0" />
+                  <TextField fx:id="firstNameField" layoutX="98.0" layoutY="18.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
+                  <TextField fx:id="lastNameField" layoutX="98.0" layoutY="54.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
+                  <TextField fx:id="phoneField" layoutX="98.0" layoutY="91.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
+                  <TextField fx:id="emailField" layoutX="98.0" layoutY="129.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
+                  <TextField fx:id="addressField" layoutX="98.0" layoutY="165.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
+                  <TextField fx:id="cityField" layoutX="100.0" layoutY="252.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
+                  <TextField fx:id="postCodeField" layoutX="99.0" layoutY="208.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="305.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="14.0" />
                </children>
             </AnchorPane>
         </items>

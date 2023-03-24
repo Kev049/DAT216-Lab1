@@ -1,1 +1,31 @@
+Problem/”mindre önskvärde händelser” med lösningar:
 
+När vi minskar fönstret så blir kontakterna tillslut omöjliga att se. Detta gäller egentligen hela applikationen.
+Det är möjligt att minska fönstret så att endast minimize, maximize och close knappen syns. Detta är för att vi har
+endast specificierat Min Width för vår SplitPanes vänstra AnchorBase. Alla andra komponenter har 0 i Min Width och Height.
+En lösning skulle då vara att sätta godtyckliga minimi värden på komponenterna. Det skulle se till att applikationen
+är användbar, även när den är som minst.
+
+När man lägger till nya kontakter hamnar de vanligtvis i botten av listan. Om vi redigerar en kontakt och ger den
+ett efternamn ändras dock detta. Det är nämligen så att kontaktlistan är alfabetiskt ordnad, men endast med hänsyn
+på efternamn. Om en användare hade både kontakter med och utan efternamn hade de varit väldigt förvirrande om de letade
+sin kontaktlista. För att lösa detta måste vi ändra på funktionaliteten i lab1fxbackend.
+
+När man har ett tomt förnamn och efternamn, har kontaktet ingen “display name”. Det känns som att det är en displaybugg
+eftersom det finns en osynlig kontakt på kolumnen till vänster. Det bör finnas ett preliminärvärde som "Unnamed Contact"
+eller "Namnlös kontakt" för dessa situationer. Alternativt skulle vi kunna kräva att en kontakt måste ha åminstone ett
+för eller efternamn.
+
+När man tar bort alla kontakter i listan och startar om programmet så går det att skriva i information i rutorna som
+inte sparas i någon kontakt. Det hade varit rimligt att rutorna hade varit utgråade och att man inte kunde skriva i dem
+när man inte har någon kontakt markerad. Liknande, när man tar bort sista kontakten från listan så fortsätter programmet
+att visa informationen i den kontakten trots att den inte är markerad. Det skulle också kunna lösas genom att tömma
+rutorna och gråa ut dem och inte låta någon skriva i dem.
+
+Utifrån vad vi tidigare sett, är det konvention att skriva i kontaktinformation och sen skapa kontakten. I denna
+applikationen funkar det tvärtom. Först måste användaren skapa en kontakt och sen kan de redigera dess kontaktuppgifter.
+Som tidigare sagt går det dessutom att skriva i kontaktinfo innan det finns några kontakter. En ny användare skulle
+sannolikt tro att de behöver skriva kontaktinfo först och sedan trycka new contact knappen. Det funkar inte och kan
+göra det svårare för nya användare att använda programmet. Lösningen skulle kunna vara att ändra så att systemet följer
+konvention alternativt att inaktivera textfältet när det inte finns några kontakter i kontaktlistan. Det hade även varit
+möjligt att lägga till tooltips som meddelar hur systemet fungerar.
